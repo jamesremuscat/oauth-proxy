@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 import os
 import requests
@@ -12,6 +13,16 @@ OAUTH_TOKEN_URL = os.environ['OAUTH_TOKEN_URL']
 app = FastAPI()
 
 session = requests.Session()
+
+ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'https://muscatech.github.io'
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS
+)
 
 
 @app.get("/token")
