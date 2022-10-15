@@ -43,7 +43,7 @@ def get_token(code, redirect_uri):
 
 
 @app.get("/refresh")
-def get_token(token):
+def refresh_token(token):
 
     response = session.post(
         OAUTH_TOKEN_URL,
